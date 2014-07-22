@@ -1,0 +1,22 @@
+public class MoveMouse
+    {
+
+        IWebDriver driver = new FirefoxDriver();
+
+        [TestMethod]
+        public void TestMethod1()
+        {
+
+            driver.Navigate().GoToUrl("https://www.google.co.uk");
+            string s = driver.FindElement(By.XPath(".//*[@Class='gb_z gb_Da']")).GetAttribute("title");
+            Actions mouseAction = new Actions(driver);
+            mouseAction.MoveToElement(driver.FindElement(By.XPath(".//*[@Class='gb_z gb_Da']"))).Click().Build().Perform();
+            Debug.WriteLine(s);
+        }
+
+        [TestCleanup]
+        public void CleanUp()
+        {
+            driver.Close();
+        }
+    }
